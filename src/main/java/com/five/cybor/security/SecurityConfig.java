@@ -28,7 +28,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Deshabilitamos CSRF porque JWT es stateless
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/v1/auth/**").permitAll() // Endpoints públicos (Registro/Login)
+                .requestMatchers("/api/v1/auth/login", "/api/v1/auth/refresh").permitAll() // Endpoints públicos (Registro/Login)
                 .anyRequest().authenticated()                  // Todo lo demás requiere token
             )
             .sessionManagement(session -> session

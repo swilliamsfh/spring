@@ -29,14 +29,14 @@ public class UserModel implements UserDetails{
 	@Column(unique=true, nullable = false)
 	private String email;
 	@Column(nullable = false)
-	private String role;
+	private String roles;
 	
-	public UserModel(Long id,String username, String password, String email, String role) {
+	public UserModel(Long id,String username, String password, String email, String roles) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.role = role;
+		this.roles = roles;
 		this.id = id;
 	}
 	
@@ -71,11 +71,11 @@ public class UserModel implements UserDetails{
 	}
 
 	public String getRole() {
-		return role;
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRole(String roles) {
+		this.roles = roles;
 	}
 
 	public Long getId() {
@@ -88,7 +88,7 @@ public class UserModel implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of(new SimpleGrantedAuthority(role));
+		return List.of(new SimpleGrantedAuthority(roles));
 	}
 	
 	@Override
