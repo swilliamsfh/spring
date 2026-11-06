@@ -80,35 +80,5 @@ public class AuthService {
 		
 	}
 	
-	public ResponseEntity<Map<String, String>> refresh(String refreshToken) {
-	  
-		// 1. El método ahora valida la firma y la existencia en nuestra "lista blanca/base de datos"
-	    if (refreshToken == null || !jwtService.isRefreshTokenValid(refreshToken)) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-	    }
-
-	    // 2. Extraemos el usuario con la llave criptográfica correcta de refresh
-	    String username = jwtService.extractUsernameFromRefresh(refreshToken);
-	    
-	    // 3. Generamos un nuevo Access Token de ciclo corto para que Pinia lo recoja
-	    String newAccessToken = jwtService.generateRefreshEx(username);
-
-	    return ResponseEntity.ok(Map.of("accessToken", newAccessToken));
-	}
-	
-	
-	public ResponseEntity<Void> logout(HttpServletResponse response) {
-        // Destruir la cookie en el navegador asignando maxAge(0)
-        ResponseCookie cookie = ResponseCookie.from("refresh_token", "")
-                .httpOnly(true)
-                .secure(true)
-                .sameSite("Strict")
-                .path("/api/auth")
-                .maxAge(0)
-                .build();
-                
-        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
-        return ResponseEntity.ok().build();
-    }
 	
 }

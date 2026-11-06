@@ -9,25 +9,25 @@ import jakarta.persistence.Table;
 public class AgentEntity {
 
 	@Id
-	private String user;
+	private String username;
 	private String name;
 	private String title;
-	private int square;
+	private int unit;
 	
-	public AgentEntity(String user, String name, String title, int square) {
+	public AgentEntity(String username, String name, String title, int unit) {
 		super();
-		this.user = user;
+		this.username = username;
 		this.name = name;
 		this.title = title;
-		this.square = square;
+		this.unit = unit;
 	}
 
 	public String getUser() {
-		return user;
+		return username;
 	}
 
 	public void setUser(String user) {
-		this.user = user;
+		this.username = user;
 	}
 
 	public String getName() {
@@ -47,13 +47,13 @@ public class AgentEntity {
 	}
 
 	public int getSquare() {
-		return square;
+		return unit;
 	}
 
 	public void setSquare(int square) {
-		this.square = square;
+		this.unit = square;
 	}
 	
 	
-	
+	 
 }
