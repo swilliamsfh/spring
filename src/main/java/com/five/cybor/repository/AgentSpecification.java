@@ -42,7 +42,7 @@ public class AgentSpecification {
                 return cb.notLike(campoTexto, "%" + valorTexto + "%");
 
             case "startswith":
-            	System.out.println(operador);
+            	
                 return cb.like(campoTexto, valorTexto + "%");
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + valorTexto);
