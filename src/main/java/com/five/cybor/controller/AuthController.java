@@ -2,12 +2,9 @@ package com.five.cybor.controller;
 
 
 
-import java.util.Map;
-
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +16,6 @@ import com.five.cybor.model.dto.LoginRequest;
 import com.five.cybor.model.dto.RegisterRequest;
 import com.five.cybor.service.AuthService;
 
-import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -43,14 +39,5 @@ public class AuthController {
 	public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
 		return ResponseEntity.ok(authService.Login(request));
 	}
-	
-	@PostMapping("/refresh")
-	public ResponseEntity<Map<String, String>> refresh(@CookieValue(name = "refresh_token", required = false) String refreshToken) {
-	   	return authService.refresh(refreshToken);
-	}
-	
-	@PostMapping("/logout")
-    public ResponseEntity<Void> logout(HttpServletResponse response) {
-        return authService.logout(response);
-    }
+		 
 }

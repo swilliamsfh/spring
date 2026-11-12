@@ -9,27 +9,29 @@ import jakarta.persistence.Table;
 public class AgentEntity {
 
 	@Id
-	private String user;
+	private String username;
 	private String name;
 	private String title;
-	private int square;
+	private int unit;
 	
-	public AgentEntity(String user, String name, String title, int square) {
+	public AgentEntity(String username, String name, String title, int unit) {
 		super();
-		this.user = user;
+		this.username = username;
 		this.name = name;
 		this.title = title;
-		this.square = square;
+		this.unit = unit;
 	}
 
-	public String getUser() {
-		return user;
+	
+	
+	public AgentEntity() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setUser(String user) {
-		this.user = user;
-	}
 
+    
+	
 	public String getName() {
 		return name;
 	}
@@ -46,14 +48,23 @@ public class AgentEntity {
 		this.title = title;
 	}
 
-	public int getSquare() {
-		return square;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setSquare(int square) {
-		this.square = square;
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
+	public int getUnit() {
+		return unit;
+	}
+
+	public void setUnit(int unit) {
+		this.unit = unit;
+	}
+
 	
 	
-	
+	 
 }

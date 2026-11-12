@@ -1,26 +1,39 @@
 package com.five.cybor.model.dto;
 
+import com.five.cybor.model.AgentEntity;
+
 public class AgentResponse {
 
-	private String user;
+	private String username;
 	private String name;
 	private String title;
-	private int square;
+	private int unit;
 	
-	public AgentResponse(String user, String name, String title, int square) {
+	public AgentResponse(String username, String name, String title, int unit) {
 		super();
-		this.user = user;
+		this.username = username;
 		this.name = name;
 		this.title = title;
-		this.square = square;
+		this.unit = unit;
 	}
 
-	public String getUser() {
-		return user;
+	public AgentResponse(AgentEntity entity) {
+		
+		this.username = entity.getUsername();
+		this.name = entity.getName();
+		this.title = entity.getTitle();
+		this.unit = entity.getUnit();
+		
+	}
+	
+	
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getName() {
@@ -39,14 +52,15 @@ public class AgentResponse {
 		this.title = title;
 	}
 
-	public int getSquare() {
-		return square;
+	public int getUnit() {
+		return unit;
 	}
 
-	public void setSquare(int square) {
-		this.square = square;
+	public void setUnit(int unit) {
+		this.unit = unit;
 	}
-	
-	
+
+		
+	 
 	
 }

@@ -1,5 +1,6 @@
 package com.five.cybor.service;
 
+import com.five.cybor.entity.UserModel;
 import com.five.cybor.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,8 +18,12 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return userRepository.findByUsername(username).
+		
+		UserModel user =
+		userRepository.findByUsername(username).
 				orElseThrow(()-> new UsernameNotFoundException("Usuario no encontrado: " + username));
+		
+		return UserDetailsImpl.create(user);
 	}
 
 	
