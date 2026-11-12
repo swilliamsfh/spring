@@ -22,14 +22,16 @@ public class AgentEntity {
 		this.unit = unit;
 	}
 
-	public String getUser() {
-		return username;
+	
+	
+	public AgentEntity() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setUser(String user) {
-		this.username = user;
-	}
 
+    
+	
 	public String getName() {
 		return name;
 	}
@@ -46,13 +48,22 @@ public class AgentEntity {
 		this.title = title;
 	}
 
-	public int getSquare() {
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getUnit() {
 		return unit;
 	}
 
-	public void setSquare(int square) {
-		this.unit = square;
+	public void setUnit(int unit) {
+		this.unit = unit;
 	}
+
 	
 	
 	 

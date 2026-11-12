@@ -4,12 +4,14 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import com.five.cybor.entity.Role;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -28,7 +30,7 @@ public class JwtService {
 	
 	private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
 		
-		String roles = getRoles(userDetails);
+		Set<Role> roles = getRoles(userDetails);
 	 		   extraClaims.put("roles", roles);
 		
 		return Jwts.builder().
@@ -71,16 +73,18 @@ public class JwtService {
 		 return Keys.hmacShaKeyFor(keyBytes);
 	}
 	
-	public String roles(UserDetails userdetails) {
+	public Set<Role> roles(UserDetails userdetails) {
 		return getRoles(userdetails);
 	}
 		
-	private String getRoles(UserDetails userDetails) {
+	private Set<Role> getRoles(UserDetails userDetails) {
 		return userDetails.
 			   getAuthorities().
 			   stream().
-			   map(GrantedAuthority::getAuthority).
-			   collect(Collectors.joining(","));
+			   map(authority -> new Role(authority.getAuthority())).
+			   collect(Collectors.toSet());
+		 
+		 
 	
 	}
 
