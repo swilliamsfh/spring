@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.five.cybor.model.dto.AgentResponse;
 import com.five.cybor.service.AgentService;
 
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/v1/collections/")
@@ -46,6 +45,14 @@ public class AgentController {
 		Page<AgentResponse> sendResponse =  agentService.agents(allParams);
 			
 		return ResponseEntity.ok(new PagedModel<>(sendResponse));
+	}
+	
+	@GetMapping("allAgents")
+	ResponseEntity<List<AgentResponse>> getAllAgents(int unit){
+		
+		List<AgentResponse> response = agentService.getAllAgents(unit);
+		
+		return ResponseEntity.ok(response);
 		
 	}
 }
